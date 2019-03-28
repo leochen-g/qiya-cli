@@ -1,7 +1,5 @@
 const { prompt } = require('inquirer')
-const { writeFile, writeFileSync, existsSync, readFileSync } = require('fs')
-const { listTable } = require(`${__dirname}/../utils`)
-const { resolve } = require('path')
+const { writeFileSync, existsSync, readFileSync } = require('fs')
 const chalk = require('chalk')
 const download = require('download-git-repo')
 const ora = require('ora')
@@ -78,7 +76,6 @@ function go(name, project, description, author, place) {
             dt.author = '{{author}}'
             const result = handlebars.compile(JSON.stringify(dt, null, 2))(meta)
             writeFileSync(packageFile, result)
-            console.log(chalk.green('新的项目已经初始化成功!'))
         } else {
             console.log(chalk.red('package.json不存在!'))
         }
